@@ -15,14 +15,14 @@
             <div class="flex flex-col md:flex-row items-center">
                 <div class="md:w-1/2 mb-10 md:mb-0" data-aos="fade-right">
                     <div class="inline-block bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full mb-6">
-                        <span class="text-sm font-semibold">✨ Importir & Distributor Resmi</span>
+                        <span class="text-sm font-semibold">✨ Importir & Distributor Terpercaya</span>
                     </div>
                     <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-                        Distributor <span class="text-yellow-300">Kusuka Body Shampoo</span> Terpercaya
+                        Distributor <span class="text-yellow-300">Produk Berkualitas</span> Terpercaya
                     </h1>
                     <p class="text-xl mb-8 text-gray-100">
-                        PT. Riau Food Lestari adalah importir dan distributor resmi Kusuka Body Shampoo dari Malaysia ke
-                        Indonesia, melayani kebutuhan personal care berkualitas tinggi untuk seluruh Indonesia.
+                        PT. Riau Food Lestari adalah importir dan distributor berbagai produk kebutuhan sehari-hari
+                        berkualitas tinggi dari berbagai negara untuk seluruh Indonesia.
                     </p>
                     <div class="flex flex-col sm:flex-row gap-4">
                         <a href="#products"
@@ -42,8 +42,8 @@
                             <div class="text-sm text-gray-200">Tahun Pengalaman</div>
                         </div>
                         <div class="text-center">
-                            <div class="text-3xl font-bold text-yellow-300">4</div>
-                            <div class="text-sm text-gray-200">Varian Kusuka</div>
+                            <div class="text-3xl font-bold text-yellow-300">50+</div>
+                            <div class="text-sm text-gray-200">Produk Pilihan</div>
                         </div>
                         <div class="text-center">
                             <div class="text-3xl font-bold text-yellow-300">100%</div>
@@ -55,12 +55,12 @@
                 <div class="md:w-1/2 flex justify-center" data-aos="fade-left">
                     <div class="relative floating">
                         <div class="w-full max-w-lg">
-                            <img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=800"
-                                alt="Kusuka Body Shampoo" class="rounded-3xl shadow-2xl">
+                            <img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=800" alt="Products"
+                                class="rounded-3xl shadow-2xl">
                             <div class="absolute -bottom-6 -left-6 bg-white text-orange-600 p-6 rounded-2xl shadow-xl">
                                 <i class="fas fa-certificate text-4xl mb-2"></i>
                                 <div class="font-bold">Importir Resmi</div>
-                                <div class="text-sm">Produk dari Malaysia</div>
+                                <div class="text-sm">Produk Import & Lokal</div>
                             </div>
                         </div>
                     </div>
@@ -87,13 +87,12 @@
                     </h2>
                     <p class="text-gray-600 mb-6 text-lg leading-relaxed">
                         PT. Riau Food Lestari adalah perusahaan importir dan distributor yang berlokasi di Pekanbaru, Riau.
-                        Kami fokus pada distribusi Kusuka Body Shampoo dari Malaysia dengan supplier resmi SKYMATICS
-                        HOLDINGS SDN BHD.
+                        Kami fokus pada distribusi berbagai produk kebutuhan sehari-hari berkualitas tinggi dari berbagai
+                        supplier terpercaya.
                     </p>
                     <p class="text-gray-600 mb-8 text-lg leading-relaxed">
-                        Dengan pengalaman lebih dari 10 tahun dalam industri distribusi, kami memastikan setiap produk yang
-                        kami distribusikan adalah produk original dengan kualitas terbaik dari Port Kelang, Malaysia ke
-                        seluruh Indonesia melalui Tanjung Priok.
+                        Dengan pengalaman lebih dari 10 tahun dalam industri distribusi, kami melayani berbagai produk
+                        seperti personal care, minuman, makanan, dan kebutuhan rumah tangga lainnya ke seluruh Indonesia.
                     </p>
 
                     <!-- Features -->
@@ -104,7 +103,7 @@
                             </div>
                             <div>
                                 <div class="font-semibold text-gray-800">Importir Resmi</div>
-                                <div class="text-sm text-gray-600">Dari Malaysia</div>
+                                <div class="text-sm text-gray-600">Produk Import</div>
                             </div>
                         </div>
                         <div class="flex items-start space-x-3">
@@ -131,7 +130,7 @@
                             </div>
                             <div>
                                 <div class="font-semibold text-gray-800">Harga Terbaik</div>
-                                <div class="text-sm text-gray-600">Langsung dari Importir</div>
+                                <div class="text-sm text-gray-600">Langsung dari Distributor</div>
                             </div>
                         </div>
                     </div>
@@ -152,119 +151,115 @@
                 <div class="inline-block bg-orange-100 text-orange-700 px-4 py-2 rounded-full mb-4">
                     <span class="font-semibold text-sm">PRODUK KAMI</span>
                 </div>
-                <h2 class="text-4xl font-bold mb-4 text-gray-800">Kusuka Body Shampoo <span class="text-gradient">Premium
-                        Collection</span></h2>
+                <h2 class="text-4xl font-bold mb-4 text-gray-800">Kategori Produk <span
+                        class="text-gradient">Unggulan</span></h2>
                 <p class="text-gray-600 text-lg max-w-2xl mx-auto">
-                    Kami menyediakan 4 varian Kusuka Body Shampoo original dari Malaysia
+                    Kami menyediakan berbagai kategori produk berkualitas tinggi untuk kebutuhan Anda
                 </p>
             </div>
 
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Product 1 -->
+                <!-- Category 1 - Personal Care -->
                 <div class="bg-white rounded-2xl overflow-hidden shadow-lg card-hover" data-aos="fade-up"
                     data-aos-delay="0">
                     <div class="relative">
                         <div class="bg-gradient-to-br from-pink-300 to-pink-500 h-56 flex items-center justify-center">
-                            <i class="fas fa-flower text-white text-6xl opacity-50"></i>
+                            <i class="fas fa-spray-can text-white text-6xl opacity-50"></i>
                         </div>
                         <div
                             class="absolute top-4 right-4 bg-gradient-to-r from-orange-500 to-red-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                            Best Seller
+                            Popular
                         </div>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-bold mb-3 text-gray-800">Kusuka Rose</h3>
+                        <h3 class="text-xl font-bold mb-3 text-gray-800">Personal Care</h3>
                         <p class="text-gray-600 mb-4">
-                            Body shampoo dengan aroma mawar yang elegan dan menyegarkan.
+                            Body shampoo, sabun, shampo, dan produk perawatan tubuh lainnya.
                         </p>
                         <div class="flex items-center justify-between">
-                            <span class="text-orange-600 font-bold text-sm">1000ML & 2000ML</span>
-                            <button
+                            <span class="text-orange-600 font-bold text-sm">Berbagai Merek</span>
+                            <a href="/products"
                                 class="bg-orange-100 text-orange-700 px-4 py-2 rounded-lg hover:bg-orange-600 hover:text-white transition font-medium text-sm">
-                                Order Now
-                            </button>
+                                Lihat Produk
+                            </a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Product 2 -->
+                <!-- Category 2 - Minuman -->
                 <div class="bg-white rounded-2xl overflow-hidden shadow-lg card-hover" data-aos="fade-up"
                     data-aos-delay="100">
                     <div class="relative">
-                        <div class="bg-gradient-to-br from-amber-200 to-amber-400 h-56 flex items-center justify-center">
-                            <i class="fas fa-glass-whiskey text-white text-6xl opacity-50"></i>
+                        <div class="bg-gradient-to-br from-blue-300 to-blue-500 h-56 flex items-center justify-center">
+                            <i class="fas fa-glass-water text-white text-6xl opacity-50"></i>
                         </div>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-bold mb-3 text-gray-800">Kusuka Goats Milk</h3>
+                        <h3 class="text-xl font-bold mb-3 text-gray-800">Minuman</h3>
                         <p class="text-gray-600 mb-4">
-                            Dengan kandungan susu kambing untuk kulit lebih lembut dan halus.
+                            Susu, minuman kesehatan, jus, dan berbagai minuman kemasan.
                         </p>
                         <div class="flex items-center justify-between">
-                            <span class="text-orange-600 font-bold text-sm">1000ML & 2000ML</span>
-                            <button
+                            <span class="text-orange-600 font-bold text-sm">Beragam Pilihan</span>
+                            <a href="/products"
                                 class="bg-orange-100 text-orange-700 px-4 py-2 rounded-lg hover:bg-orange-600 hover:text-white transition font-medium text-sm">
-                                Order Now
-                            </button>
+                                Lihat Produk
+                            </a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Product 3 -->
+                <!-- Category 3 - Makanan -->
                 <div class="bg-white rounded-2xl overflow-hidden shadow-lg card-hover" data-aos="fade-up"
                     data-aos-delay="200">
                     <div class="relative">
-                        <div class="bg-gradient-to-br from-green-300 to-green-500 h-56 flex items-center justify-center">
-                            <i class="fas fa-lemon text-white text-6xl opacity-50"></i>
+                        <div class="bg-gradient-to-br from-amber-300 to-orange-500 h-56 flex items-center justify-center">
+                            <i class="fas fa-cookie text-white text-6xl opacity-50"></i>
                         </div>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-bold mb-3 text-gray-800">Kusuka Pomelo</h3>
+                        <h3 class="text-xl font-bold mb-3 text-gray-800">Makanan</h3>
                         <p class="text-gray-600 mb-4">
-                            Aroma pomelo segar untuk kesegaran sepanjang hari.
+                            Makanan ringan, biskuit, coklat, dan berbagai produk makanan.
                         </p>
                         <div class="flex items-center justify-between">
-                            <span class="text-orange-600 font-bold text-sm">1000ML & 2000ML</span>
-                            <button
+                            <span class="text-orange-600 font-bold text-sm">Banyak Varian</span>
+                            <a href="/products"
                                 class="bg-orange-100 text-orange-700 px-4 py-2 rounded-lg hover:bg-orange-600 hover:text-white transition font-medium text-sm">
-                                Order Now
-                            </button>
+                                Lihat Produk
+                            </a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Product 4 -->
+                <!-- Category 4 - Household -->
                 <div class="bg-white rounded-2xl overflow-hidden shadow-lg card-hover" data-aos="fade-up"
                     data-aos-delay="300">
                     <div class="relative">
-                        <div class="bg-gradient-to-br from-yellow-300 to-yellow-500 h-56 flex items-center justify-center">
-                            <i class="fas fa-gem text-white text-6xl opacity-50"></i>
-                        </div>
-                        <div
-                            class="absolute top-4 right-4 bg-yellow-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                            Premium
+                        <div class="bg-gradient-to-br from-green-300 to-green-500 h-56 flex items-center justify-center">
+                            <i class="fas fa-home text-white text-6xl opacity-50"></i>
                         </div>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-bold mb-3 text-gray-800">Kusuka Royal Jelly</h3>
+                        <h3 class="text-xl font-bold mb-3 text-gray-800">Kebutuhan Rumah Tangga</h3>
                         <p class="text-gray-600 mb-4">
-                            Dengan royal jelly untuk nutrisi kulit yang maksimal.
+                            Pembersih, deterjen, dan produk kebutuhan rumah tangga lainnya.
                         </p>
                         <div class="flex items-center justify-between">
-                            <span class="text-orange-600 font-bold text-sm">1000ML</span>
-                            <button
+                            <span class="text-orange-600 font-bold text-sm">Lengkap</span>
+                            <a href="/products"
                                 class="bg-orange-100 text-orange-700 px-4 py-2 rounded-lg hover:bg-orange-600 hover:text-white transition font-medium text-sm">
-                                Order Now
-                            </button>
+                                Lihat Produk
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="text-center mt-12">
-                <a href="#contact"
+                <a href="/products"
                     class="inline-block bg-gradient-to-r from-orange-500 to-red-600 text-white px-8 py-4 rounded-full font-semibold hover:from-orange-600 hover:to-red-700 transition shadow-lg">
-                    Pesan Sekarang <i class="fas fa-arrow-right ml-2"></i>
+                    Lihat Semua Produk <i class="fas fa-arrow-right ml-2"></i>
                 </a>
             </div>
         </div>
@@ -292,7 +287,7 @@
                     </div>
                     <h3 class="text-xl font-bold mb-3 text-gray-800">Import Resmi</h3>
                     <p class="text-gray-600">
-                        Importir resmi dari Malaysia melalui Port Kelang ke Tanjung Priok
+                        Importir resmi berbagai produk berkualitas dari berbagai negara
                     </p>
                 </div>
 
@@ -350,7 +345,7 @@
                     </div>
                     <h3 class="text-xl font-bold mb-3 text-gray-800">Importir Resmi</h3>
                     <p class="text-gray-600">
-                        Partner resmi SKYMATICS HOLDINGS SDN BHD Malaysia untuk distribusi Kusuka di Indonesia.
+                        Partner resmi berbagai supplier internasional untuk distribusi produk berkualitas di Indonesia.
                     </p>
                 </div>
 
@@ -360,7 +355,7 @@
                     </div>
                     <h3 class="text-xl font-bold mb-3 text-gray-800">100% Original</h3>
                     <p class="text-gray-600">
-                        Semua produk dijamin original langsung dari Port Kelang, Malaysia.
+                        Semua produk dijamin original langsung dari supplier terpercaya.
                     </p>
                 </div>
 
@@ -368,9 +363,9 @@
                     <div class="bg-yellow-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
                         <i class="fas fa-dollar-sign text-yellow-600 text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-gray-800">Harga Importir</h3>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">Harga Kompetitif</h3>
                     <p class="text-gray-600">
-                        Dapatkan harga terbaik langsung dari importir tanpa perantara.
+                        Dapatkan harga terbaik langsung dari importir dan distributor.
                     </p>
                 </div>
 
@@ -388,9 +383,9 @@
                     <div class="bg-red-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
                         <i class="fas fa-boxes text-red-600 text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-gray-800">Stok Tersedia</h3>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">Stok Lengkap</h3>
                     <p class="text-gray-600">
-                        Sistem manajemen stok modern memastikan ketersediaan produk.
+                        Sistem manajemen stok modern memastikan ketersediaan berbagai produk.
                     </p>
                 </div>
 
@@ -417,7 +412,7 @@
         <div class="container mx-auto px-4 text-center relative z-10" data-aos="zoom-in">
             <h2 class="text-4xl md:text-5xl font-bold mb-6">Tertarik Menjadi Mitra Kami?</h2>
             <p class="text-xl mb-10 text-gray-100 max-w-2xl mx-auto">
-                Hubungi kami sekarang untuk informasi harga, pemesanan, dan program reseller Kusuka Body Shampoo
+                Hubungi kami sekarang untuk informasi harga, pemesanan, dan program kemitraan distribusi produk
             </p>
 
             <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
