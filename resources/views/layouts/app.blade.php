@@ -181,6 +181,7 @@
     <footer class="bg-gradient-to-b from-gray-900 to-black text-white py-12">
         <div class="container mx-auto px-4">
             <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <!-- Company Info -->
                 <div>
                     <div class="flex items-center space-x-3 mb-4">
                         <img src="{{ asset('images/logo.png') }}" alt="PT. Riau Food Lestari" class="h-12 w-auto">
@@ -198,6 +199,7 @@
                     </div>
                 </div>
 
+                <!-- Menu Navigation -->
                 <div>
                     <h4 class="font-semibold mb-4 text-lg flex items-center">
                         <i class="fas fa-bars text-orange-500 mr-2"></i> Menu
@@ -205,65 +207,81 @@
                     <ul class="space-y-2">
                         <li>
                             <a href="{{ route('home') }}"
-                                class="text-gray-400 hover:text-orange-500 transition flex items-center">
-                                <i class="fas fa-chevron-right text-xs mr-2"></i> Beranda
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('home') }}#about"
-                                class="text-gray-400 hover:text-orange-500 transition flex items-center">
-                                <i class="fas fa-chevron-right text-xs mr-2"></i> Tentang Kami
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('home') }}#services"
-                                class="text-gray-400 hover:text-orange-500 transition flex items-center">
-                                <i class="fas fa-chevron-right text-xs mr-2"></i> Layanan
+                                class="text-gray-400 hover:text-orange-500 transition flex items-center group">
+                                <i
+                                    class="fas fa-chevron-right text-xs mr-2 group-hover:translate-x-1 transition-transform"></i>
+                                Beranda
                             </a>
                         </li>
                         <li>
                             <a href="{{ route('products') }}"
-                                class="text-gray-400 hover:text-orange-500 transition flex items-center">
-                                <i class="fas fa-chevron-right text-xs mr-2"></i> Produk
+                                class="text-gray-400 hover:text-orange-500 transition flex items-center group">
+                                <i
+                                    class="fas fa-chevron-right text-xs mr-2 group-hover:translate-x-1 transition-transform"></i>
+                                Produk
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('home') }}#contact"
-                                class="text-gray-400 hover:text-orange-500 transition flex items-center">
-                                <i class="fas fa-chevron-right text-xs mr-2"></i> Kontak
+                            <a href="{{ route('blog') }}"
+                                class="text-gray-400 hover:text-orange-500 transition flex items-center group">
+                                <i
+                                    class="fas fa-chevron-right text-xs mr-2 group-hover:translate-x-1 transition-transform"></i>
+                                Blog & Artikel
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('company') }}"
+                                class="text-gray-400 hover:text-orange-500 transition flex items-center group">
+                                <i
+                                    class="fas fa-chevron-right text-xs mr-2 group-hover:translate-x-1 transition-transform"></i>
+                                Perusahaan
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('career') }}"
+                                class="text-gray-400 hover:text-orange-500 transition flex items-center group">
+                                <i
+                                    class="fas fa-chevron-right text-xs mr-2 group-hover:translate-x-1 transition-transform"></i>
+                                Karir
                             </a>
                         </li>
                     </ul>
                 </div>
 
+                <!-- Contact Information -->
                 <div>
                     <h4 class="font-semibold mb-4 text-lg flex items-center">
                         <i class="fas fa-phone text-orange-500 mr-2"></i> Kontak
                     </h4>
                     <ul class="space-y-3 text-gray-400">
-                        <li class="flex items-start">
-                            <i class="fas fa-map-marker-alt text-orange-500 mr-3 mt-1"></i>
-                            <span>Pekanbaru, Riau, Indonesia</span>
+                        <li class="flex items-start group">
+                            <i
+                                class="fas fa-map-marker-alt text-orange-500 mr-3 mt-1 group-hover:scale-110 transition-transform"></i>
+                            <span>Jl. Soekarno Hatta, Gang Nusa Indah<br>Pekanbaru, Riau 28111<br>Indonesia</span>
                         </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-phone text-orange-500 mr-3"></i>
+                        <li class="flex items-center group">
+                            <i class="fas fa-phone text-orange-500 mr-3 group-hover:scale-110 transition-transform"></i>
                             <a href="tel:+6282390017777" class="hover:text-orange-500 transition">+62 823-9001-7777</a>
                         </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-envelope text-orange-500 mr-3"></i>
+                        <li class="flex items-center group">
+                            <i
+                                class="fas fa-envelope text-orange-500 mr-3 group-hover:scale-110 transition-transform"></i>
                             <a href="mailto:info@riaufoodlestari.com"
                                 class="hover:text-orange-500 transition">info@riaufoodlestari.com</a>
                         </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-clock text-orange-500 mr-3 mt-1"></i>
+                        <li class="flex items-start group">
+                            <i
+                                class="fas fa-clock text-orange-500 mr-3 mt-1 group-hover:scale-110 transition-transform"></i>
                             <div>
-                                <div>Senin - Sabtu</div>
+                                <div class="font-semibold text-white">Senin - Sabtu</div>
                                 <div class="text-sm">08:30 - 17:00 WIB</div>
+                                <div class="text-sm mt-1 text-red-400">Minggu: Tutup</div>
                             </div>
                         </li>
                     </ul>
                 </div>
 
+                <!-- Social Media -->
                 <div>
                     <h4 class="font-semibold mb-4 text-lg flex items-center">
                         <i class="fas fa-share-alt text-orange-500 mr-2"></i> Ikuti Kami
@@ -272,49 +290,45 @@
 
                     <div class="flex gap-3 mb-6">
                         <a href="https://wa.me/6282390017777" target="_blank"
-                            class="bg-gradient-to-br from-green-500 to-green-600 w-10 h-10 rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-lg">
+                            class="bg-gradient-to-br from-green-500 to-green-600 w-10 h-10 rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-lg hover:shadow-green-500/50">
                             <i class="fab fa-whatsapp"></i>
                         </a>
                         <a href="https://instagram.com/riaufoodlestari" target="_blank"
-                            class="bg-gradient-to-br from-pink-500 to-purple-600 w-10 h-10 rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-lg">
+                            class="bg-gradient-to-br from-pink-500 to-purple-600 w-10 h-10 rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-lg hover:shadow-pink-500/50">
                             <i class="fab fa-instagram"></i>
                         </a>
                         <a href="#"
-                            class="bg-gradient-to-br from-blue-500 to-blue-600 w-10 h-10 rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-lg">
+                            class="bg-gradient-to-br from-blue-500 to-blue-600 w-10 h-10 rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-lg hover:shadow-blue-500/50">
                             <i class="fab fa-facebook-f"></i>
                         </a>
                         <a href="#"
-                            class="bg-gradient-to-br from-blue-400 to-blue-500 w-10 h-10 rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-lg">
+                            class="bg-gradient-to-br from-blue-400 to-blue-500 w-10 h-10 rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-lg hover:shadow-blue-400/50">
                             <i class="fab fa-linkedin-in"></i>
-                        </a>
-                    </div>
-
-                    <div
-                        class="bg-gradient-to-br from-orange-500/10 to-red-500/10 border border-orange-500/30 rounded-lg p-4">
-                        <h5 class="font-semibold mb-2 text-orange-400">Program Reseller</h5>
-                        <p class="text-sm text-gray-400 mb-3">Bergabunglah dengan program reseller kami</p>
-                        <a href="https://wa.me/6282390017777?text=Saya%20tertarik%20dengan%20program%20reseller"
-                            target="_blank"
-                            class="inline-block bg-gradient-to-r from-orange-500 to-red-600 text-white px-4 py-2 rounded-lg text-sm hover:from-orange-600 hover:to-red-700 transition font-medium">
-                            Daftar Sekarang <i class="fas fa-arrow-right ml-1"></i>
                         </a>
                     </div>
                 </div>
             </div>
 
+            <!-- Bottom Footer -->
             <div class="border-t border-gray-800 pt-8">
-                <div class="flex flex-col md:flex-row justify-between items-center">
-                    <p class="text-gray-400 text-sm mb-4 md:mb-0">
-                        &copy; 2024 PT. Riau Food Lestari. All rights reserved. |
-                        <a href="#" class="hover:text-orange-500 transition">Privacy Policy</a> |
-                        <a href="#" class="hover:text-orange-500 transition">Terms of Service</a>
+                <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                    <p class="text-gray-400 text-sm text-center md:text-left">
+                        &copy; {{ date('Y') }} PT. Riau Food Lestari. All rights reserved.
                     </p>
-                    <div class="flex items-center space-x-4">
-                        <span class="text-gray-400 text-sm">Powered by</span>
-                        <div class="flex items-center space-x-2">
-                            <i class="fas fa-code text-orange-500"></i>
-                            <span class="text-gray-400 text-sm font-semibold">PT. Riau Food Lestari</span>
-                        </div>
+
+                    <div class="flex flex-wrap justify-center items-center gap-4 text-sm text-gray-400">
+                        <a href="#" class="hover:text-orange-500 transition">Privacy Policy</a>
+                        <span>|</span>
+                        <a href="#" class="hover:text-orange-500 transition">Terms of Service</a>
+                        <span>|</span>
+                        <a href="{{ route('career') }}" class="hover:text-orange-500 transition">Karir</a>
+                        <span>|</span>
+                        <a href="{{ route('company') }}" class="hover:text-orange-500 transition">Tentang Kami</a>
+                    </div>
+
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-heart text-red-500 animate-pulse"></i>
+                        <span class="text-gray-400 text-sm">Made with love in Pekanbaru</span>
                     </div>
                 </div>
             </div>

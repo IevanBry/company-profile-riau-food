@@ -87,23 +87,11 @@
         <section class="py-20 category-section" data-category="{{ $category['slug'] }}">
             <div class="container mx-auto px-4">
 
-                <!-- Category Header -->
+                <!-- Category Header - Simple -->
                 <div class="text-center mb-16" data-aos="fade-up">
-                    <div class="inline-block bg-orange-100 text-orange-700 px-4 py-2 rounded-full mb-4">
-                        <span class="font-semibold text-sm">{{ $category['origin'] }}</span>
-                    </div>
                     <h2 class="text-4xl font-bold mb-4 text-gray-800">
                         <span class="text-gradient">{{ $category['name'] }}</span>
                     </h2>
-                    <p class="text-gray-600 text-lg max-w-2xl mx-auto">
-                        {{ $category['description'] }}
-                    </p>
-                    @if($category['badge'])
-                        <div
-                            class="inline-flex items-center bg-gradient-to-r {{ $category['badge_color'] }} text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg mt-4">
-                            <i class="fas fa-{{ $category['badge_icon'] }} mr-2"></i>{{ $category['badge'] }}
-                        </div>
-                    @endif
                 </div>
 
                 <!-- Products Grid -->
