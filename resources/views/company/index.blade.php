@@ -35,8 +35,8 @@
                         <div
                             class="absolute -inset-4 bg-gradient-to-br from-orange-400 to-red-500 rounded-3xl blur-2xl opacity-20">
                         </div>
-                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=800" alt="Perusahaan"
-                            class="relative rounded-3xl shadow-2xl w-full">
+                        <img src="{{ $company->image ? asset('storage/' . $company->image) : 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800' }}"
+                            alt="Perusahaan" class="relative rounded-3xl shadow-2xl w-full">
                     </div>
                 </div>
 
@@ -48,41 +48,26 @@
                         PT. Riau Food <span class="text-gradient">Lestari</span>
                     </h2>
                     <div class="space-y-5 text-gray-600 text-lg leading-relaxed">
-                        <p>
-                            PT. Riau Food Lestari adalah perusahaan yang bergerak di bidang importir dan distributor produk
-                            kebutuhan sehari-hari berkualitas tinggi. Kami berlokasi di Pekanbaru, Riau dan telah melayani
-                            berbagai wilayah di Indonesia.
-                        </p>
-                        <p>
-                            Dengan pengalaman lebih dari 10 tahun, kami memiliki komitmen kuat dalam menyediakan produk
-                            original
-                            dan berkualitas dari berbagai supplier terpercaya internasional. Jaringan distribusi kami
-                            mencakup
-                            seluruh Indonesia dengan sistem logistik yang handal dan profesional.
-                        </p>
-                        <p>
-                            Kami percaya bahwa kepercayaan pelanggan adalah aset terbesar kami. Oleh karena itu, setiap
-                            produk
-                            yang kami distribusikan dijamin 100% original dan telah melalui proses quality control yang
-                            ketat.
-                        </p>
+                        <p>{{ $company->description_1 }}</p>
+                        <p>{{ $company->description_2 }}</p>
+                        <p>{{ $company->description_3 }}</p>
                     </div>
 
                     <!-- Stats -->
                     <div class="grid grid-cols-3 gap-4 mt-10">
                         <div
                             class="text-center bg-gradient-to-br from-orange-50 to-red-50 p-5 rounded-2xl border-2 border-orange-100 hover:border-orange-300 transition-all hover:shadow-lg">
-                            <div class="text-4xl font-black text-orange-600 mb-1">10+</div>
+                            <div class="text-4xl font-black text-orange-600 mb-1">{{ $company->years_established }}</div>
                             <div class="text-sm font-semibold text-gray-700">Tahun Berdiri</div>
                         </div>
                         <div
                             class="text-center bg-gradient-to-br from-blue-50 to-indigo-50 p-5 rounded-2xl border-2 border-blue-100 hover:border-blue-300 transition-all hover:shadow-lg">
-                            <div class="text-4xl font-black text-blue-600 mb-1">50+</div>
+                            <div class="text-4xl font-black text-blue-600 mb-1">{{ $company->total_products }}</div>
                             <div class="text-sm font-semibold text-gray-700">Produk</div>
                         </div>
                         <div
                             class="text-center bg-gradient-to-br from-green-50 to-teal-50 p-5 rounded-2xl border-2 border-green-100 hover:border-green-300 transition-all hover:shadow-lg">
-                            <div class="text-4xl font-black text-green-600 mb-1">100%</div>
+                            <div class="text-4xl font-black text-green-600 mb-1">{{ $company->original_guarantee }}</div>
                             <div class="text-sm font-semibold text-gray-700">Original</div>
                         </div>
                     </div>
@@ -123,11 +108,7 @@
                             </div>
                         </div>
 
-                        <p class="text-gray-600 text-lg leading-relaxed">
-                            Menjadi importir dan distributor terpercaya yang menyediakan produk berkualitas tinggi dengan
-                            harga
-                            kompetitif untuk seluruh Indonesia, serta membangun kemitraan bisnis yang saling menguntungkan.
-                        </p>
+                        <p class="text-gray-600 text-lg leading-relaxed">{{ $company->vision }}</p>
                     </div>
                 </div>
 
@@ -155,32 +136,28 @@
                                     class="w-6 h-6 bg-gradient-to-br from-orange-500 to-red-500 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 group-hover/item:scale-110 transition-transform">
                                     <i class="fas fa-check text-white text-xs"></i>
                                 </div>
-                                <span class="text-gray-600 text-lg leading-relaxed">Menyediakan produk import original
-                                    dengan jaminan kualitas 100%</span>
+                                <span class="text-gray-600 text-lg leading-relaxed">{{ $company->mission_1 }}</span>
                             </div>
                             <div class="flex items-start gap-3 group/item">
                                 <div
                                     class="w-6 h-6 bg-gradient-to-br from-orange-500 to-red-500 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 group-hover/item:scale-110 transition-transform">
                                     <i class="fas fa-check text-white text-xs"></i>
                                 </div>
-                                <span class="text-gray-600 text-lg leading-relaxed">Memberikan harga kompetitif dan layanan
-                                    terbaik kepada pelanggan</span>
+                                <span class="text-gray-600 text-lg leading-relaxed">{{ $company->mission_2 }}</span>
                             </div>
                             <div class="flex items-start gap-3 group/item">
                                 <div
                                     class="w-6 h-6 bg-gradient-to-br from-orange-500 to-red-500 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 group-hover/item:scale-110 transition-transform">
                                     <i class="fas fa-check text-white text-xs"></i>
                                 </div>
-                                <span class="text-gray-600 text-lg leading-relaxed">Membangun jaringan distribusi yang
-                                    efisien ke seluruh Indonesia</span>
+                                <span class="text-gray-600 text-lg leading-relaxed">{{ $company->mission_3 }}</span>
                             </div>
                             <div class="flex items-start gap-3 group/item">
                                 <div
                                     class="w-6 h-6 bg-gradient-to-br from-orange-500 to-red-500 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 group-hover/item:scale-110 transition-transform">
                                     <i class="fas fa-check text-white text-xs"></i>
                                 </div>
-                                <span class="text-gray-600 text-lg leading-relaxed">Menciptakan peluang kemitraan bisnis
-                                    yang menguntungkan</span>
+                                <span class="text-gray-600 text-lg leading-relaxed">{{ $company->mission_4 }}</span>
                             </div>
                         </div>
                     </div>
@@ -220,7 +197,7 @@
                             <h3 class="text-xl font-black mb-3 text-gray-900">Alamat</h3>
                         </div>
                         <p class="text-gray-700 leading-relaxed">
-                            Jl. Soekarno Hatta, Gang Nusa Indah<br>Pekanbaru, Riau 28111<br>Indonesia
+                            {{ $company->address }}
                         </p>
                     </div>
                 </div>
@@ -239,9 +216,9 @@
                             <h3 class="text-xl font-black mb-3 text-gray-900">Telepon</h3>
                         </div>
                         <div>
-                            <a href="tel:6282390017777"
+                            <a href="tel:{{ str_replace([' ', '-'], '', $company->phone) }}"
                                 class="text-blue-600 hover:text-blue-800 font-bold text-lg transition-colors">
-                                +62 823-9001-7777
+                                {{ $company->phone }}
                             </a>
                             <p class="text-gray-600 text-sm mt-1">(WhatsApp)</p>
                         </div>
@@ -261,9 +238,9 @@
                             </div>
                             <h3 class="text-xl font-black mb-3 text-gray-900">Email</h3>
                         </div>
-                        <a href="mailto:info@riaufoodlestari.com"
+                        <a href="mailto:{{ $company->email }}"
                             class="text-purple-600 hover:text-purple-800 font-bold text-lg transition-colors break-all">
-                            info@riaufoodlestari.com
+                            {{ $company->email }}
                         </a>
                     </div>
                 </div>
@@ -271,10 +248,8 @@
 
             <!-- Map -->
             <div class="rounded-3xl overflow-hidden shadow-2xl mb-12" data-aos="zoom-in">
-                <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.6550706411076!2d101.41760897496472!3d0.5183089994766221!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31d5ab005ec19403%3A0x25e4fee04beb5314!2sPT%20Riau%20Food%20Lestari%20(%20Kantor%20Admin%20RFL%20)!5e0!3m2!1sen!2sid!4v1764994157028!5m2!1sen!2sid"
-                    width="100%" height="500" style="border:0;" allowfullscreen="" loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade">
+                <iframe src="{{ $company->map_url }}" width="100%" height="500" style="border:0;" allowfullscreen=""
+                    loading="lazy" referrerpolicy="no-referrer-when-downgrade">
                 </iframe>
             </div>
 
@@ -291,13 +266,13 @@
                             <div class="bg-white rounded-2xl p-5 shadow-md border border-gray-100">
                                 <div class="flex justify-between items-center">
                                     <span class="font-bold text-gray-800">Senin - Sabtu</span>
-                                    <span class="text-orange-600 font-black">08:30 - 17:00 WIB</span>
+                                    <span class="text-orange-600 font-black">{{ $company->operating_hours }}</span>
                                 </div>
                             </div>
                             <div class="bg-white rounded-2xl p-5 shadow-md border border-gray-100">
                                 <div class="flex justify-between items-center">
                                     <span class="font-bold text-gray-800">Minggu & Hari Libur</span>
-                                    <span class="text-red-600 font-black">Tutup</span>
+                                    <span class="text-red-600 font-black">{{ $company->holiday_status }}</span>
                                 </div>
                             </div>
                         </div>
@@ -309,14 +284,14 @@
                             Untuk informasi lebih lanjut tentang produk dan kerjasama, silakan hubungi kami melalui:
                         </p>
                         <div class="flex flex-col sm:flex-row gap-4">
-                            <a href="https://wa.me/6282390017777" target="_blank"
+                            <a href="https://wa.me/{{ str_replace([' ', '-', '+'], '', $company->phone) }}" target="_blank"
                                 class="group relative inline-flex items-center justify-center gap-3 bg-gradient-to-r from-green-500 to-green-600 text-white px-8 py-4 rounded-2xl font-bold text-lg overflow-hidden transition-all hover:shadow-2xl hover:scale-105">
                                 <span
                                     class="absolute inset-0 bg-gradient-to-r from-green-400 to-green-500 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></span>
                                 <i class="fab fa-whatsapp text-xl relative z-10"></i>
                                 <span class="relative z-10">WhatsApp</span>
                             </a>
-                            <a href="mailto:info@riaufoodlestari.com"
+                            <a href="mailto:{{ $company->email }}"
                                 class="group relative inline-flex items-center justify-center gap-3 bg-gradient-to-r from-orange-500 to-red-600 text-white px-8 py-4 rounded-2xl font-bold text-lg overflow-hidden transition-all hover:shadow-2xl hover:scale-105">
                                 <span
                                     class="absolute inset-0 bg-gradient-to-r from-orange-400 to-red-500 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></span>

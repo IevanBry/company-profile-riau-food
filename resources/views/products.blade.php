@@ -40,34 +40,49 @@
     </section>
 
     <!-- Category Tabs/Pills -->
-    <section class="py-8 bg-white shadow-md sticky top-0 z-40">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-wrap gap-3 justify-center">
-                <button onclick="showCategory('all')"
-                    class="category-btn active px-6 py-3 rounded-full font-semibold transition-all">
-                    <i class="fas fa-th mr-2"></i>Semua Produk
-                </button>
-                @foreach($categories as $category)
-                    <button onclick="showCategory('{{ $category['slug'] }}')"
-                        class="category-btn px-6 py-3 rounded-full font-semibold transition-all"
-                        data-category="{{ $category['slug'] }}">
-                        {{ $category['name'] }}
+    @if(is_array($categories) || ($categories instanceof \Illuminate\Support\Collection && $categories->count() > 0))
+        <section class="py-8 bg-white shadow-md sticky top-0 z-40">
+            <div class="container mx-auto px-4">
+                <div class="flex flex-wrap gap-3 justify-center">
+                    <button onclick="showCategory('all')"
+                        class="category-btn active px-6 py-3 rounded-full font-semibold transition-all">
+                        <i class="fas fa-th mr-2"></i>Semua Produk
                     </button>
-                @endforeach
+                    @foreach($categories as $category)
+                        @php
+                            $slug = is_array($category) ? $category['slug'] : $category->slug;
+                            $name = is_array($category) ? $category['name'] : $category->name;
+                        @endphp
+                        <button onclick="showCategory('{{ $slug }}')"
+                            class="category-btn px-6 py-3 rounded-full font-semibold transition-all" data-category="{{ $slug }}">
+                            {{ $name }}
+                        </button>
+                    @endforeach
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    @endif
 
     <!-- Stats Section -->
     <section class="py-12 bg-gradient-to-b from-orange-50 to-white">
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
                 <div class="text-center" data-aos="fade-up">
-                    <div class="text-4xl font-bold text-orange-600 mb-2">{{ count($categories) }}</div>
+                    @php
+                        $categoryCount = is_array($categories) ? count($categories) : $categories->count();
+                    @endphp
+                    <div class="text-4xl font-bold text-orange-600 mb-2">{{ $categoryCount }}</div>
                     <p class="text-gray-600">Kategori Brand</p>
                 </div>
                 <div class="text-center" data-aos="fade-up" data-aos-delay="100">
-                    <div class="text-4xl font-bold text-orange-600 mb-2">50+</div>
+                    @php
+                        $totalProducts = 0;
+                        foreach ($categories as $cat) {
+                            $products = is_array($cat) ? ($cat['products'] ?? []) : $cat->products;
+                            $totalProducts += is_array($products) ? count($products) : $products->count();
+                        }
+                    @endphp
+                    <div class="text-4xl font-bold text-orange-600 mb-2">{{ $totalProducts }}+</div>
                     <p class="text-gray-600">Varian Produk</p>
                 </div>
                 <div class="text-center" data-aos="fade-up" data-aos-delay="200">
@@ -83,93 +98,155 @@
     </section>
 
     <!-- Products by Category -->
-    @foreach($categories as $category)
-        <section class="py-20 category-section" data-category="{{ $category['slug'] }}">
+    @forelse($categories as $category)
+        @php
+            $slug = is_array($category) ? $category['slug'] : $category->slug;
+            $name = is_array($category) ? $category['name'] : $category->name;
+            $description = is_array($category) ? ($category['description'] ?? null) : $category->description;
+            $origin = is_array($category) ? ($category['origin'] ?? null) : $category->origin;
+            $badge = is_array($category) ? ($category['badge'] ?? null) : $category->badge;
+            $badgeIcon = is_array($category) ? ($category['badge_icon'] ?? null) : $category->badge_icon;
+            $badgeColor = is_array($category) ? ($category['badge_color'] ?? 'from-orange-500 to-red-600') : ($category->badge_color ?? 'from-orange-500 to-red-600');
+            $products = is_array($category) ? ($category['products'] ?? []) : $category->products;
+        @endphp
+
+        <section class="py-20 category-section" data-category="{{ $slug }}">
             <div class="container mx-auto px-4">
 
-                <!-- Category Header - Simple -->
+                <!-- Category Header -->
                 <div class="text-center mb-16" data-aos="fade-up">
+                    <div class="inline-flex items-center gap-3 mb-4">
+                        @if($origin)
+                            <span class="text-3xl">{{ $origin }}</span>
+                        @endif
+                        @if($badge)
+                            <span class="bg-gradient-to-r {{ $badgeColor }} text-white px-4 py-2 rounded-full text-sm font-bold">
+                                @if($badgeIcon)
+                                    <i class="fas fa-{{ $badgeIcon }} mr-1"></i>
+                                @endif
+                                {{ $badge }}
+                            </span>
+                        @endif
+                    </div>
                     <h2 class="text-4xl font-bold mb-4 text-gray-800">
-                        <span class="text-gradient">{{ $category['name'] }}</span>
+                        <span class="text-gradient">{{ $name }}</span>
                     </h2>
+                    @if($description)
+                        <p class="text-gray-600 text-lg max-w-2xl mx-auto">{{ $description }}</p>
+                    @endif
                 </div>
 
                 <!-- Products Grid -->
-                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    @foreach($products[$category['slug']] as $index => $product)
-                        <div class="group h-full" data-aos="zoom-in" data-aos-delay="{{ $index * 100 }}">
-                            <div
-                                class="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 h-full flex flex-col">
+                @php
+                    $productCount = is_array($products) ? count($products) : $products->count();
+                @endphp
 
-                                <!-- Product Image/Icon Area -->
+                @if($productCount > 0)
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        @foreach($products as $index => $product)
+                            @php
+                                $productName = is_array($product) ? $product['name'] : $product->name;
+                                $productDescription = is_array($product) ? $product['description'] : $product->description;
+                                $productGradient = is_array($product) ? ($product['gradient'] ?? 'from-orange-300 to-orange-500') : ($product->gradient ?? 'from-orange-300 to-orange-500');
+                                $productIcon = is_array($product) ? ($product['icon'] ?? null) : $product->icon;
+                                $productImage = is_array($product) ? ($product['image'] ?? null) : $product->image;
+                                $productBadge = is_array($product) ? ($product['badge'] ?? null) : $product->badge;
+                                $productBadgeColor = is_array($product) ? ($product['badge_color'] ?? 'bg-orange-500') : ($product->badge_color ?? 'bg-orange-500');
+                                $productRating = is_array($product) ? ($product['rating'] ?? null) : $product->rating;
+                                $productSizes = is_array($product) ? ($product['sizes'] ?? []) : $product->sizes;
+
+                                if (is_string($productSizes)) {
+                                    $productSizes = json_decode($productSizes, true) ?? [];
+                                }
+                            @endphp
+
+                            <div class="group h-full" data-aos="zoom-in" data-aos-delay="{{ $index * 100 }}">
                                 <div
-                                    class="relative h-64 bg-gradient-to-br {{ $product['gradient'] }} overflow-hidden flex-shrink-0">
-                                    <div class="absolute inset-0 flex items-center justify-center">
-                                        <div class="text-center transform group-hover:scale-110 transition-transform duration-500">
-                                            <i class="fas fa-{{ $product['icon'] }} text-6xl text-white opacity-90 mb-3"></i>
-                                            <div class="text-white font-bold text-xl">
-                                                {{ strtoupper(explode(' ', $product['name'])[count(explode(' ', $product['name'])) - 1]) }}
+                                    class="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 h-full flex flex-col">
+
+                                    <!-- Product Image Area - Simplified (Image is now required) -->
+                                    <div class="relative h-64 bg-gray-100 overflow-hidden flex-shrink-0">
+                                        <img src="{{ asset('storage/' . $productImage) }}" alt="{{ $productName }}"
+                                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+
+                                        @if($productBadge)
+                                            <div class="absolute top-4 right-4 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg"
+                                                style="background-color: {{ $productBadgeColor ?: '#f97316' }};">
+                                                <i class="fas fa-fire mr-1"></i>{{ $productBadge }}
                                             </div>
-                                        </div>
-                                    </div>
-                                    @if($product['badge'])
-                                        <div
-                                            class="absolute top-4 right-4 {{ $product['badge_color'] }} text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg">
-                                            <i class="fas fa-fire mr-1"></i>{{ $product['badge'] }}
-                                        </div>
-                                    @endif
-                                </div>
-
-                                <!-- Product Info -->
-                                <div class="p-6 flex flex-col flex-grow">
-                                    <div class="flex items-center justify-between mb-3">
-                                        <span class="text-xs font-semibold text-orange-600 bg-orange-50 px-3 py-1 rounded-full">
-                                            {{ $category['name'] }}
-                                        </span>
-                                        <div class="flex items-center text-yellow-400">
-                                            <i class="fas fa-star"></i>
-                                            <span class="text-sm text-gray-600 ml-1">{{ $product['rating'] }}</span>
-                                        </div>
+                                        @endif
                                     </div>
 
-                                    <h3 class="text-xl font-bold text-gray-800 mb-3 group-hover:text-orange-600 transition">
-                                        {{ $product['name'] }}
-                                    </h3>
-
-                                    <p class="text-gray-600 mb-4 leading-relaxed text-sm flex-grow">
-                                        {{ $product['description'] }}
-                                    </p>
-
-                                    <div class="flex items-center gap-3 mb-4 text-xs text-gray-500">
-                                        <div class="flex items-center">
-                                            <i class="fas fa-check-circle text-orange-500 mr-1"></i>
-                                            Original
+                                    <!-- Product Info -->
+                                    <div class="p-6 flex flex-col flex-grow">
+                                        <div class="flex items-center justify-between mb-3">
+                                            <span class="text-xs font-semibold text-orange-600 bg-orange-50 px-3 py-1 rounded-full">
+                                                {{ $name }}
+                                            </span>
+                                            @if($productRating)
+                                                <div class="flex items-center text-yellow-400">
+                                                    <i class="fas fa-star"></i>
+                                                    <span class="text-sm text-gray-600 ml-1">{{ $productRating }}</span>
+                                                </div>
+                                            @endif
                                         </div>
-                                        <div class="flex items-center">
-                                            <i class="fas fa-flask text-orange-500 mr-1"></i>
-                                            {{ implode(', ', $product['sizes']) }}
-                                        </div>
-                                    </div>
 
-                                    <div class="flex items-center justify-between pt-4 border-t border-gray-100 mt-auto">
-                                        <div>
-                                            <p class="text-xs text-gray-500">Hubungi untuk harga</p>
-                                            <p class="text-base font-bold text-orange-600">Terbaik</p>
+                                        <h3 class="text-xl font-bold text-gray-800 mb-3 group-hover:text-orange-600 transition">
+                                            {{ $productName }}
+                                        </h3>
+
+                                        <p class="text-gray-600 mb-4 leading-relaxed text-sm flex-grow">
+                                            {{ $productDescription }}
+                                        </p>
+
+                                        @if(!empty($productSizes))
+                                            <div class="flex items-center gap-3 mb-4 text-xs text-gray-500">
+                                                <div class="flex items-center">
+                                                    <i class="fas fa-check-circle text-orange-500 mr-1"></i>
+                                                    Original
+                                                </div>
+                                                <div class="flex items-center">
+                                                    <i class="fas fa-flask text-orange-500 mr-1"></i>
+                                                    {{ implode(', ', $productSizes) }}
+                                                </div>
+                                            </div>
+                                        @endif
+
+                                        <div class="flex items-center justify-between pt-4 border-t border-gray-100 mt-auto">
+                                            <div>
+                                                <p class="text-xs text-gray-500">Hubungi untuk harga</p>
+                                                <p class="text-base font-bold text-orange-600">Terbaik</p>
+                                            </div>
+                                            <a href="https://wa.me/6282390017777?text=Halo, saya tertarik dengan {{ $productName }}"
+                                                target="_blank"
+                                                class="bg-gradient-to-r from-orange-500 to-red-600 text-white px-4 py-2 rounded-xl hover:from-orange-600 hover:to-red-700 transition font-medium shadow-lg hover:shadow-xl text-sm">
+                                                <i class="fas fa-phone mr-1"></i>Order
+                                            </a>
                                         </div>
-                                        <a href="https://wa.me/6282390017777?text=Halo, saya tertarik dengan {{ $product['name'] }}"
-                                            target="_blank"
-                                            class="bg-gradient-to-r from-orange-500 to-red-600 text-white px-4 py-2 rounded-xl hover:from-orange-600 hover:to-red-700 transition font-medium shadow-lg hover:shadow-xl text-sm">
-                                            <i class="fas fa-phone mr-1"></i>Order
-                                        </a>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    @endforeach
+                        @endforeach
+                    </div>
+                @else
+                    <div class="text-center py-12">
+                        <i class="fas fa-box-open text-6xl text-gray-300 mb-4"></i>
+                        <p class="text-gray-500 text-lg">Belum ada produk dalam kategori ini</p>
+                    </div>
+                @endif
+            </div>
+        </section>
+    @empty
+        <section class="py-20">
+            <div class="container mx-auto px-4">
+                <div class="text-center py-12">
+                    <i class="fas fa-inbox text-6xl text-gray-300 mb-4"></i>
+                    <p class="text-gray-500 text-lg">Belum ada produk yang tersedia</p>
+                    <p class="text-gray-400 text-sm mt-2">Silakan tambahkan kategori dan produk melalui dashboard admin</p>
                 </div>
             </div>
         </section>
-    @endforeach
+    @endforelse
 
     <!-- Features Section -->
     <section class="py-20 bg-white">
@@ -255,13 +332,16 @@
                     </a>
                 </div>
 
+                @php
+                    $categoryCount = is_array($categories) ? count($categories) : $categories->count();
+                @endphp
                 <div class="grid grid-cols-3 gap-8 mt-16 max-w-2xl mx-auto">
                     <div class="text-center">
                         <div class="text-4xl font-bold mb-2">🌍</div>
                         <p class="text-orange-100">Multi Brand Import</p>
                     </div>
                     <div class="text-center">
-                        <div class="text-4xl font-bold mb-2">{{ count($categories) }}</div>
+                        <div class="text-4xl font-bold mb-2">{{ $categoryCount }}</div>
                         <p class="text-orange-100">Kategori Brand</p>
                     </div>
                     <div class="text-center">
@@ -335,12 +415,22 @@
 
 @push('scripts')
     <script>
-        function showCategory(category) {
+        function showCategory(category, clickedButton = null) {
             // Update button states
             document.querySelectorAll('.category-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
-            event.target.classList.add('active');
+
+            // Add active class to clicked button or find the "all" button
+            if (clickedButton) {
+                clickedButton.classList.add('active');
+            } else {
+                // If no button clicked (e.g., on page load), activate the first button
+                const allButton = document.querySelector('.category-btn');
+                if (allButton) {
+                    allButton.classList.add('active');
+                }
+            }
 
             // Show/hide sections
             const sections = document.querySelectorAll('.category-section');
@@ -360,17 +450,19 @@
             }
 
             // Smooth scroll to first visible section
-            setTimeout(() => {
-                const firstVisible = document.querySelector('.category-section:not(.hidden)');
-                if (firstVisible && category !== 'all') {
-                    firstVisible.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            }, 100);
+            if (category !== 'all' && clickedButton) {
+                setTimeout(() => {
+                    const firstVisible = document.querySelector('.category-section:not(.hidden)');
+                    if (firstVisible) {
+                        firstVisible.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }, 100);
+            }
         }
 
-        // Initialize - show all categories
+        // Initialize on page load
         document.addEventListener('DOMContentLoaded', function () {
-            showCategory('all');
+            showCategory('all', null);
         });
     </script>
 @endpush

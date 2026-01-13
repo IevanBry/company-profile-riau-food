@@ -2,171 +2,77 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Job;
+use App\Models\JobApplication;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Mail;
 
 class CareerController extends Controller
 {
     /**
-     * Display the career page with job listings
+     * Display career page
      */
     public function index()
     {
-        // Return view tanpa passing data karena job listings sudah hardcoded di blade
-        return view('careers.index');
+        $jobs = Job::active()
+            ->ordered()
+            ->get();
+
+        return view('careers.index', compact('jobs'));
     }
 
     /**
-     * Get all available job listings
-     */
-    private function getJobListings()
-    {
-        return [
-            [
-                'id' => 1,
-                'title' => 'Staff Gudang',
-                'icon' => 'fa-truck',
-                'type' => 'Full Time',
-                'location' => 'Pekanbaru',
-                'description' => 'Mengelola stok barang, melakukan penerimaan dan pengeluaran barang, serta memastikan sistem inventory berjalan dengan baik.',
-                'skills' => ['Inventory Management', 'Logistik', 'Teliti'],
-                'color' => 'orange',
-                'requirements' => [
-                    'Pendidikan minimal SMA/SMK',
-                    'Pengalaman di bidang warehouse minimal 1 tahun',
-                    'Mampu mengoperasikan komputer',
-                    'Teliti dan bertanggung jawab',
-                    'Dapat bekerja dalam tim'
-                ]
-            ],
-            [
-                'id' => 2,
-                'title' => 'Sales Marketing',
-                'icon' => 'fa-user-tie',
-                'type' => 'Full Time',
-                'location' => 'Pekanbaru',
-                'description' => 'Bertanggung jawab dalam pengembangan pasar, mencari klien baru, dan membangun hubungan jangka panjang dengan pelanggan.',
-                'skills' => ['Komunikasi', 'Negosiasi', 'Target Oriented'],
-                'color' => 'blue',
-                'requirements' => [
-                    'Pendidikan minimal D3/S1 semua jurusan',
-                    'Pengalaman di bidang sales minimal 1 tahun',
-                    'Memiliki kendaraan pribadi dan SIM C',
-                    'Mampu berkomunikasi dengan baik',
-                    'Berorientasi pada target',
-                    'Memiliki network yang luas'
-                ]
-            ],
-            [
-                'id' => 3,
-                'title' => 'Staff Administrasi',
-                'icon' => 'fa-calculator',
-                'type' => 'Full Time',
-                'location' => 'Pekanbaru',
-                'description' => 'Menangani administrasi perusahaan, pengarsipan dokumen, entry data, dan mendukung operasional harian kantor.',
-                'skills' => ['MS Office', 'Data Entry', 'Detail Oriented'],
-                'color' => 'green',
-                'requirements' => [
-                    'Pendidikan minimal D3 semua jurusan',
-                    'Menguasai MS Office (Excel, Word)',
-                    'Teliti dan detail oriented',
-                    'Mampu bekerja dengan deadline',
-                    'Komunikatif dan rapih'
-                ]
-            ],
-            [
-                'id' => 4,
-                'title' => 'Supir / Driver',
-                'icon' => 'fa-shipping-fast',
-                'type' => 'Full Time',
-                'location' => 'Pekanbaru',
-                'description' => 'Mengantar produk ke lokasi pelanggan dengan aman dan tepat waktu. Memiliki SIM B1 dan pengalaman mengemudi.',
-                'skills' => ['SIM B1', 'Bertanggung Jawab', 'Jujur'],
-                'color' => 'purple',
-                'requirements' => [
-                    'Pendidikan minimal SMA/SMK',
-                    'Memiliki SIM B1 yang masih aktif',
-                    'Pengalaman mengemudi minimal 2 tahun',
-                    'Mengetahui rute di Pekanbaru dan sekitarnya',
-                    'Jujur dan bertanggung jawab',
-                    'Disiplin dan tepat waktu'
-                ]
-            ]
-        ];
-    }
-
-    /**
-     * Handle job application submission
+     * Submit job application
      */
     public function apply(Request $request)
     {
-        // Validate the request
-        $validated = $request->validate([
+        $validator = Validator::make($request->all(), [
+            'job_id' => 'required|exists:jobs,id',
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
             'phone' => 'required|string|max:20',
-            'position' => 'required|string',
-            'message' => 'nullable|string|max:1000',
-            'cv' => 'required|file|mimes:pdf,doc,docx|max:5120' // Max 5MB
+            'message' => 'nullable|string',
+            'cv' => 'required|file|mimes:pdf,doc,docx|max:5120', // max 5MB
+        ], [
+            'job_id.required' => 'Posisi harus dipilih',
+            'job_id.exists' => 'Posisi tidak valid',
+            'name.required' => 'Nama harus diisi',
+            'email.required' => 'Email harus diisi',
+            'email.email' => 'Format email tidak valid',
+            'phone.required' => 'No. telepon harus diisi',
+            'cv.required' => 'CV harus diupload',
+            'cv.mimes' => 'CV harus berformat PDF, DOC, atau DOCX',
+            'cv.max' => 'Ukuran CV maksimal 5MB',
         ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput()
+                ->with('error', 'Terjadi kesalahan pada form. Silakan periksa kembali.');
+        }
 
         try {
-            // Store the CV file
-            if ($request->hasFile('cv')) {
-                $cv = $request->file('cv');
-                $filename = time() . '_' . $validated['name'] . '_' . $cv->getClientOriginalName();
-                $path = $cv->storeAs('applications', $filename, 'public');
-                $validated['cv_path'] = $path;
-            }
+            // Upload CV
+            $cvPath = $request->file('cv')->store('cv', 'public');
 
-            // Here you can save to database if you have an Application model
-            // Application::create($validated);
+            // Create application
+            JobApplication::create([
+                'job_id' => $request->job_id,
+                'name' => $request->name,
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'message' => $request->message,
+                'cv_file' => $cvPath,
+                'status' => 'pending',
+            ]);
 
-            // Send email notification to HR
-            $this->sendApplicationNotification($validated);
-
-            return redirect()->route('career')->with('success', 'Lamaran Anda berhasil dikirim! Tim HR kami akan segera menghubungi Anda.');
-
+            return redirect()->back()->with('success', 'Lamaran Anda berhasil dikirim! Tim kami akan menghubungi Anda segera.');
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Terjadi kesalahan saat mengirim lamaran. Silakan coba lagi atau hubungi kami via WhatsApp.');
+            return redirect()->back()
+                ->withInput()
+                ->with('error', 'Terjadi kesalahan saat mengirim lamaran. Silakan coba lagi.');
         }
-    }
-
-    /**
-     * Send application notification email to HR
-     */
-    private function sendApplicationNotification($data)
-    {
-        // You can customize this email notification
-        // For now, we'll just log it
-        \Log::info('New job application received', [
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'position' => $data['position']
-        ]);
-
-        // Uncomment below if you want to send actual email
-        /*
-        Mail::send('emails.application', $data, function($message) use ($data) {
-            $message->to('hr@riaufoodlestari.com')
-                    ->subject('Lamaran Baru: ' . $data['position']);
-        });
-        */
-    }
-
-    /**
-     * Show job detail
-     */
-    public function show($id)
-    {
-        $jobs = $this->getJobListings();
-        $job = collect($jobs)->firstWhere('id', (int) $id);
-
-        if (!$job) {
-            abort(404);
-        }
-
-        return view('career.show', compact('job'));
     }
 }
